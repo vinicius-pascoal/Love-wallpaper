@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wallpaper-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+/* Fundo gradiente dinâmico */
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: 0;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Container da escultura */
+.sculpture-wrapper {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  z-index: 10;
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+}
+
+.sculpture-wrapper:hover {
+  filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.5));
+}
+
+/* Imagem Children (base) */
+.children {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+/* Imagem Frame (mãos) - sobreposta */
+.frame {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  object-fit: contain;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  opacity: 1;
+}
+
+/* Efeito de partículas */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--endX), var(--endY)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Informações */
+.info {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  z-index: 15;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.info:hover {
+  opacity: 1;
+}
+
+.info h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+  margin-bottom: 10px;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.info p {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  50% {
+    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.4), 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .sculpture-wrapper {
+    width: 500px;
+    height: 500px;
+  }
+
+  .info h1 {
+    font-size: 2.5rem;
+    letter-spacing: 6px;
+  }
+
+  .info p {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sculpture-wrapper {
+    width: 350px;
+    height: 350px;
+  }
+
+  .info h1 {
+    font-size: 2rem;
+    letter-spacing: 4px;
+  }
+
+  .info p {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sculpture-wrapper {
+    width: 250px;
+    height: 250px;
+  }
+
+  .info h1 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .info p {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+}
