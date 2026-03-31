@@ -53,6 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const children = document.querySelector('.children');
   const wallpaperContainer = document.querySelector('.wallpaper-container');
 
+  // Prevenir drag de imagens
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
   // Iniciar partículas
   createParticles();
 
